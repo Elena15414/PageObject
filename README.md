@@ -32,12 +32,15 @@
     * second:
         * number: '5559 0000 0000 0002'
         * balance: 10 000 RUB
+        * 
 После логина, который уже мы сделали на лекции, вы получите список карт:
 
 
 ![cards](https://github.com/Elena15414/PageObject/assets/123021392/20e94987-8bd8-49d8-8c2d-1f9700a7fd2d)
 
 Нажав на кнопку «Пополнить», вы перейдёте на страницу перевода средств:
+
+![transfer](https://github.com/Elena15414/PageObject/assets/123021392/42b37056-6f29-47d7-96f4-2d6c6fc1de06)
 
 
 
