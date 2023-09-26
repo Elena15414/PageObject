@@ -19,14 +19,19 @@ public class TransferPage {
     private final SelenideElement actionTransfer = $("[data-test-id=action-transfer]");
     private final SelenideElement actionCancel = $("[data-test-id=action-cancel]");
     private final SelenideElement transferHead = $(byText("Пополнение карты"));
-    private final SelenideElement errorMessage = $("[data-test-id=error-notification]");
+    private final SelenideElement errorMessage = $(".notification");
 
 
     public TransferPage() {
         transferHead.shouldBe(Condition.visible);
     }
 
-    public void transfer(DataHelper.CardInfo cardInfo, String amountToTransfer) {
+    public DashBoardPage makeValidTransfer(String amountToTransfer, DataHelper.CardInfo cardInfo) {
+        makeTransfer(amountToTransfer, cardInfo);
+        return new DashBoardPage();
+    }
+
+    public void makeTransfer(String amountToTransfer, DataHelper.CardInfo cardInfo) {
         amount.setValue(amountToTransfer);
         from.setValue(cardInfo.getCardNumber());
         actionTransfer.click();
@@ -34,17 +39,6 @@ public class TransferPage {
 
     public void findErrorMessage(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(Condition.visible);
-    }
-
-    public DashBoardPage validTransfer(DataHelper.CardInfo cardInfo, String amountToTransfer) {
-        transfer(cardInfo, amountToTransfer);
-        return new DashBoardPage();
-    }
-
-    public void transferCancel(DataHelper.CardInfo cardInfo, String amountToTransfer) {
-        amount.setValue(amountToTransfer);
-        from.setValue(cardInfo.getCardNumber());
-        actionCancel.click();
     }
 
 }
